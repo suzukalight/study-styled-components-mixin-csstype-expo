@@ -1,13 +1,15 @@
-import React, { useContext } from "react";
+import React, { ReactNode, useContext } from "react";
 import { GestureResponderEvent } from "react-native";
 import { ThemeContext } from "styled-components";
 import styled from "styled-components/native";
 
-import { colorPalettes, ThemeColors } from "../../styles/color";
+import { palette, ThemeColors } from "../../styles/color";
 import { Typography } from "../Typography";
 
 type ButtonStyledProps = {
   theme: ThemeColors;
+  primary?: boolean;
+  danger?: boolean;
 };
 
 const ButtonContainer = styled.TouchableOpacity`
@@ -19,24 +21,44 @@ const ButtonContainer = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
 
-  background-color: ${({ theme }: ButtonStyledProps) => theme.primary};
-`;
-
-const ButtonText = styled(Typography)`
-  color: ${colorPalettes.white};
+  background-color: ${({ theme, primary, danger }: ButtonStyledProps) =>
+    primary ? theme.primary : danger ? palette.red : palette.white};
+  border: ${({ primary, danger }: ButtonStyledProps) =>
+    primary || danger ? "none" : `1px solid ${palette.gray}`};
 `;
 
 export type ButtonProps = {
-  title: string;
+  label: ReactNode;
+  primary?: boolean;
+  danger?: boolean;
   onPress?: (event: GestureResponderEvent) => void;
 };
 
-export const Button = ({ onPress, title }: ButtonProps) => {
+export const Button = ({
+  label,
+  primary,
+  danger,
+  onPress,
+  ...styles
+}: ButtonProps) => {
   const theme = useContext<ThemeColors>(ThemeContext);
 
   return (
-    <ButtonContainer activeOpacity={0.75} onPress={onPress} theme={theme}>
-      <ButtonText fontSize="large">{title}</ButtonText>
+    <ButtonContainer
+      {...styles}
+      activeOpacity={0.75}
+      onPress={onPress}
+      theme={theme}
+      primary={primary}
+      danger={danger}
+    >
+      <Typography
+        fontSize="large"
+        fontWeight={primary || danger ? "bold" : "normal"}
+        color={primary || danger ? palette.white : palette.black}
+      >
+        {label}
+      </Typography>
     </ButtonContainer>
   );
 };
