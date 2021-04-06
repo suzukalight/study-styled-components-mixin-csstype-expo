@@ -1,18 +1,13 @@
-import React, { ReactNode } from "react";
-import styled from "styled-components/native";
+import React, { ReactNode } from 'react';
+import styled from 'styled-components/native';
+import { colorMixin, ColorProps } from '../../styles/color';
+import { FontProps, fontMixin } from '../../styles/typography';
 
-import { StyleSize, fz } from "../../styles/type";
-
-export type TypographyStyledProps = {
-  fontSize?: StyleSize;
-  fontWeight?: number | string;
-};
+export type TypographyStyledProps = Partial<FontProps> & Partial<ColorProps>;
 
 export const TypographyStyled = styled.Text`
-  font-size: ${({ fontSize }: TypographyStyledProps) =>
-    fz(fontSize ?? "medium")};
-  font-weight: ${({ fontWeight }: TypographyStyledProps) => fontWeight ?? 500};
-  color: black;
+  ${fontMixin}
+  ${colorMixin}
 `;
 
 export type TypographyProps = TypographyStyledProps & {
