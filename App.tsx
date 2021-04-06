@@ -1,41 +1,40 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
-import { StatusBar } from "expo-status-bar";
-import { ThemeProvider } from "styled-components";
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { ThemeProvider } from 'styled-components';
 
-import { HStack } from "./src/components/atoms/HStack";
-import { VStack } from "./src/components/atoms/VStack";
-import { StackSpacer } from "./src/components/atoms/StackSpacer";
-import { Button } from "./src/components/atoms/Button";
-import { Typography } from "./src/components/atoms/Typography";
-import { themeColors } from "./src/components/styles/color";
+import { HStack } from './src/components/atoms/HStack';
+import { VStack } from './src/components/atoms/VStack';
+import { StackSpacer } from './src/components/atoms/StackSpacer';
+import { Button } from './src/components/atoms/Button';
+import { Typography } from './src/components/atoms/Typography';
+import { palette, themeColors } from './src/components/styles/color';
 
 export default function App() {
   return (
     <ThemeProvider theme={themeColors}>
       <View style={styles.container}>
-        <VStack>
-          <HStack maxW="100vw" w="100vw">
-            <VStack>
-              <Typography>🍣</Typography>
-              <Typography>🍕</Typography>
-            </VStack>
-          </HStack>
-
-          <HStack maxW="100vw" w="100vw">
-            <Typography fontSize="x-large">🍣🍣🍣</Typography>
+        <VStack spacing={4} w="100vw" h="100vh" px={4} py={8} bgColor={palette.white}>
+          <HStack w="100%">
+            <Typography>🍣🍕🍣</Typography>
             <StackSpacer />
-            <Typography fontSize="xxx-large">🍕</Typography>
+            <Typography fontSize="xx-large">🍣🍕🍣</Typography>
           </HStack>
 
-          <Typography>
+          <Typography fontSize="xxx-large">🍕</Typography>
+
+          <Typography color={palette.brown} textDecoration="underline">
             Typographyでマークアップした文章マークアップした文章Typographyでマークアップした文章
           </Typography>
 
-          <Button title="ボタン" onPress={() => console.log("pressed")} />
+          <StackSpacer />
 
-          <StatusBar style="auto" />
+          <Button label="ボタン" onPress={() => console.log('pressed')} />
+          <Button label="primary button" primary onPress={() => console.log('pressed')} />
+          <Button label="DANGER!!!" danger onPress={() => console.log('pressed')} />
         </VStack>
+
+        <StatusBar style="auto" />
       </View>
     </ThemeProvider>
   );
@@ -44,11 +43,10 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fafaff",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "100%",
-    maxWidth: "100vw",
-    height: "100%",
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    maxWidth: '100vw',
+    height: '100%',
   },
 });
