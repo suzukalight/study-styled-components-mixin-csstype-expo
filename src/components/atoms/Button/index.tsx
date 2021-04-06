@@ -1,15 +1,21 @@
-import React, { ReactNode, useContext } from "react";
-import { GestureResponderEvent } from "react-native";
-import { ThemeContext } from "styled-components";
-import styled from "styled-components/native";
+import React, { ReactNode, useContext } from 'react';
+import { GestureResponderEvent } from 'react-native';
+import { ThemeContext } from 'styled-components';
+import styled from 'styled-components/native';
 
-import { palette, ThemeColors } from "../../styles/color";
-import { Typography } from "../Typography";
+import { palette, ThemeColors } from '../../styles/color';
+import { FlexboxProps, flexboxMixin } from '../../styles/flexbox';
+import { LayoutProps, layoutMixin } from '../../styles/layout';
+import { Typography } from '../Typography';
 
-type ButtonStyledProps = {
+type ButtonStyles = Partial<LayoutProps> &
+  Partial<FlexboxProps> & {
+    primary?: boolean;
+    danger?: boolean;
+  };
+
+type ButtonStyledProps = ButtonStyles & {
   theme: ThemeColors;
-  primary?: boolean;
-  danger?: boolean;
 };
 
 const ButtonContainer = styled.TouchableOpacity`
@@ -21,26 +27,21 @@ const ButtonContainer = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
 
+  ${flexboxMixin}
+  ${layoutMixin}
+
   background-color: ${({ theme, primary, danger }: ButtonStyledProps) =>
-    primary ? theme.primary : danger ? palette.red : palette.white};
+    primary ? theme.primary : danger ? palette.red : 'transparent'};
   border: ${({ primary, danger }: ButtonStyledProps) =>
-    primary || danger ? "none" : `1px solid ${palette.gray}`};
+    primary || danger ? 'none' : `1px solid ${palette.gray}`};
 `;
 
-export type ButtonProps = {
+export type ButtonProps = ButtonStyles & {
   label: ReactNode;
-  primary?: boolean;
-  danger?: boolean;
   onPress?: (event: GestureResponderEvent) => void;
 };
 
-export const Button = ({
-  label,
-  primary,
-  danger,
-  onPress,
-  ...styles
-}: ButtonProps) => {
+export const Button = ({ label, primary, danger, onPress, ...styles }: ButtonProps) => {
   const theme = useContext<ThemeColors>(ThemeContext);
 
   return (
@@ -54,7 +55,7 @@ export const Button = ({
     >
       <Typography
         fontSize="large"
-        fontWeight={primary || danger ? "bold" : "normal"}
+        fontWeight={primary || danger ? 'bold' : 'normal'}
         color={primary || danger ? palette.white : palette.black}
       >
         {label}
