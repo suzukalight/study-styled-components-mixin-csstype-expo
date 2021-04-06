@@ -29,7 +29,7 @@ export default function App() {
 
           <StackSpacer />
 
-          <Button label="ボタン" onPress={() => console.log('pressed')} />
+          <Button label="ボタン" onPress={() => console.log('pressed')} w="100%" h={64} />
           <Button label="primary button" primary onPress={() => console.log('pressed')} />
           <Button label="DANGER!!!" danger onPress={() => console.log('pressed')} />
         </VStack>
