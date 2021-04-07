@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { TextInput as RnTextInput } from 'react-native';
 import styled from 'styled-components/native';
+
+import { Typography } from '../../atoms/Typography';
+
 import { backgroundMixin, BackgroundProps } from '../../styles/background';
 import { borderMixin, BorderProps } from '../../styles/border';
-
 import { colorMixin, ColorProps } from '../../styles/color';
 import { layoutMixin, LayoutProps } from '../../styles/layout';
 import { spaceMixin, SpaceProps } from '../../styles/space';
@@ -17,14 +19,14 @@ export type TextInputStyledProps = Partial<Omit<FontProps, 'textAlign'>> &
   Partial<LayoutProps>;
 
 export const TextInputStyled = styled(RnTextInput)`
-  font-size: 1rem;
-  line-height: 1.25rem;
+  font-size: 16px;
+  line-height: 20px;
 
   width: 100%;
-  height: 2rem;
+  height: 32px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 1.5rem 0.5rem;
+  padding: 24px 12px;
 
   ${layoutMixin}
   ${spaceMixin}
@@ -35,11 +37,17 @@ export const TextInputStyled = styled(RnTextInput)`
 `;
 
 export type TextInputProps = TextInputStyledProps & {
+  label?: ReactNode;
   value?: any;
   onBlur?: () => void;
   onChangeText?: (text: string) => void;
 };
 
-export const TextInput = ({ ...props }: TextInputProps) => {
-  return <TextInputStyled {...props} />;
+export const TextInput = ({ label, ...props }: TextInputProps) => {
+  return (
+    <>
+      {label && <Typography w="100%" textAlign="left">{label}</Typography>}
+      <TextInputStyled {...props} />
+    </>
+  );
 };

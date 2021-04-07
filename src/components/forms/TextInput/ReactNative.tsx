@@ -1,10 +1,13 @@
 import React from 'react';
-import { FieldValues, Controller } from 'react-hook-form';
+import { FieldValues, Controller, DeepMap, FieldError } from 'react-hook-form';
+
+import { TextInput, TextInputProps } from './TextInput';
+import { Typography } from '../../atoms/Typography';
 
 import { RhfProps } from '../type';
-import { TextInput, TextInputStyledProps } from './TextInput';
+import { palette } from '../../styles/color';
 
-export type RhfTextInputProps<T extends FieldValues> = TextInputStyledProps & RhfProps<T>;
+export type RhfTextInputProps<T extends FieldValues> = TextInputProps & RhfProps<T>;
 
 export const RhfTextInput = <T extends FieldValues>({
   control,
@@ -19,13 +22,20 @@ export const RhfTextInput = <T extends FieldValues>({
       name={name}
       rules={rules}
       defaultValue={defaultValue}
-      render={({ field: { onChange, onBlur, value } }) => (
-        <TextInput
-          {...styles}
-          value={value}
-          onBlur={onBlur}
-          onChangeText={(value) => onChange(value)}
-        />
+      render={({ field: { onChange, onBlur, value }, formState: { errors } }) => (
+        <>
+          <TextInput
+            {...styles}
+            value={value}
+            onBlur={onBlur}
+            onChangeText={(value) => onChange(value)}
+          />
+          {errors[name] && (
+            <Typography w="100%" textAlign="left" color={palette.red}>
+              {(errors[name] as DeepMap<FieldValues, FieldError>)?.message}
+            </Typography>
+          )}
+        </>
       )}
     />
   );
