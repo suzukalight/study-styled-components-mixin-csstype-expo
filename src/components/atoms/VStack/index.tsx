@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import styled from 'styled-components/native';
 
 import { LayoutProps, layoutMixin } from '../../styles/layout';
-import { sp, SpaceProps, Space, spaceMixin } from '../../styles/space';
+import { sizeValueToPixel, SpaceProps, Space, spaceMixin } from '../../styles/space';
 import { ColorProps } from '../../styles/color';
 import { BackgroundProps, backgroundMixin } from '../../styles/background';
 
@@ -31,7 +31,9 @@ export const VStack = ({ children, spacing, ...styles }: VStackProps) => {
   const childrenWithProps = spacing
     ? React.Children.map(children, (child, index) => {
         if (index === 0 || !React.isValidElement(child)) return child;
-        return React.cloneElement(child, { style: { marginTop: sp(spacing) } });
+        return React.cloneElement(child, {
+          style: { marginTop: sizeValueToPixel(spacing as number) },
+        });
       })
     : children;
 

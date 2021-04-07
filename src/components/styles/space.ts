@@ -34,11 +34,13 @@ export type SpaceProps = {
   pl: Space;
 };
 
+export const sizeValueToPixel = (size: number) => size * 4;
+
 export const sp = (spacing?: Space) =>
   typeof spacing === 'string'
     ? spacings[spacing as StyleSize]
     : typeof spacing === 'number'
-    ? `${spacing * 4}px`
+    ? `${sizeValueToPixel(spacing as number)}px`
     : 0;
 
 export const spaceMixin = css<Partial<SpaceProps>>`

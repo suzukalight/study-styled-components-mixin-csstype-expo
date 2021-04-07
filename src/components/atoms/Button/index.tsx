@@ -20,8 +20,8 @@ type ButtonStyledProps = ButtonStyles & {
 
 const ButtonContainer = styled.TouchableOpacity`
   height: 48px;
-  padding: 1rem;
-  border-radius: 0.5rem;
+  padding: 16px;
+  border-radius: 8px;
 
   display: flex;
   justify-content: center;

@@ -4,14 +4,14 @@ import { css } from 'styled-components';
 import { StyleSize } from './type';
 
 const fontSizes: { [key in StyleSize]: string } = {
-  'xx-small': '0.5rem',
-  'x-small': '0.75rem',
-  small: '0.875rem',
-  medium: '1rem',
-  large: '1.25rem',
-  'x-large': '1.5rem',
-  'xx-large': '2rem',
-  'xxx-large': '3rem',
+  'xx-small': '8px',
+  'x-small': '12px',
+  small: '14px',
+  medium: '16px',
+  large: '20px',
+  'x-large': '24px',
+  'xx-large': '32px',
+  'xxx-large': '48px',
 };
 
 export type FontSize = StyleSize | CSS.Property.FontSize;
