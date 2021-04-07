@@ -29,8 +29,8 @@ export type HStackProps = HStackStyledProps & {
 
 export const HStack = ({ children, spacing, ...styles }: HStackProps) => {
   const childrenWithProps = spacing
-    ? React.Children.map(children, (child) => {
-        if (!React.isValidElement(child)) return child;
+    ? React.Children.map(children, (child, index) => {
+        if (index === 0 || !React.isValidElement(child)) return child;
         return React.cloneElement(child, { style: { marginTop: sp(spacing) } });
       })
     : children;

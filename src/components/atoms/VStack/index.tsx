@@ -29,8 +29,8 @@ export type VStackProps = VStackStyledProps & {
 
 export const VStack = ({ children, spacing, ...styles }: VStackProps) => {
   const childrenWithProps = spacing
-    ? React.Children.map(children, (child) => {
-        if (!React.isValidElement(child)) return child;
+    ? React.Children.map(children, (child, index) => {
+        if (index === 0 || !React.isValidElement(child)) return child;
         return React.cloneElement(child, { style: { marginTop: sp(spacing) } });
       })
     : children;
