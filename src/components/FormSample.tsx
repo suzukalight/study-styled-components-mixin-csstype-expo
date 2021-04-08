@@ -16,9 +16,9 @@ type FormData = {
 };
 
 const schema = yup.object().shape({
-  username: yup.string().required(),
-  password: yup.string().required(),
-  agreement: yup.boolean().isTrue(),
+  username: yup.string().required('ユーザ名は必須です'),
+  password: yup.string().required('パスワードは必須です'),
+  agreement: yup.boolean().isTrue('利用規約に同意してください'),
 });
 
 export const FormSample = () => {
@@ -29,16 +29,16 @@ export const FormSample = () => {
   const onSubmit = (data: FormData) => console.log(data);
 
   return (
-    <VStack w="100%" spacing={4}>
-      <Box w="100%">
+    <VStack spacing={4}>
+      <Box>
         <RhfTextInput control={control} name="username" label="ユーザ名" />
       </Box>
 
-      <Box w="100%">
+      <Box>
         <RhfTextInput control={control} name="password" label="パスワード" />
       </Box>
 
-      <Box w="100%">
+      <Box>
         <RhfCheckbox control={control} name="agreement" title="利用規約に同意する" />
       </Box>
 
