@@ -24,7 +24,7 @@ export const RhfTextInput = <T extends FieldValues>({
       rules={rules}
       defaultValue={defaultValue}
       render={({ field: { onChange, onBlur, value }, formState: { errors } }) => (
-        <VStack w="100%">
+        <VStack>
           <TextInput
             {...styles}
             value={value}

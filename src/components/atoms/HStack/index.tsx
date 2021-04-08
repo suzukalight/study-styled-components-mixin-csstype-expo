@@ -17,6 +17,8 @@ export const HStackStyled = styled.View<HStackStyledProps>`
   justify-content: space-between;
   align-items: stretch;
 
+  width: 100%;
+
   ${layoutMixin}
   ${spaceMixin}
   ${backgroundMixin}

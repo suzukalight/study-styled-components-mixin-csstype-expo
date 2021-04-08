@@ -17,6 +17,8 @@ export const VStackStyled = styled.View<VStackStyledProps>`
   justify-content: space-between;
   align-items: center;
 
+  width: 100%;
+
   ${layoutMixin}
   ${spaceMixin}
   ${backgroundMixin}

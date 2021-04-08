@@ -20,27 +20,29 @@ export default function App() {
       <RnElementsThemeProvider>
         <StyledComponentsThemeProvider theme={themeColors}>
           <View style={styles.container}>
-            <VStack spacing={4} w="100%" h="100%" px={4} py={8} bgColor={palette.white}>
-              <HStack w="100%">
-                <Typography>🍣🍕🍣</Typography>
-                <StackSpacer />
-                <Typography fontSize="xx-large">🍣🍕🍣</Typography>
-              </HStack>
+            <VStack spacing={4} h="100%" px={4} py={8} bgColor={palette.white}>
+              <VStack spacing={4}>
+                <HStack>
+                  <Typography fontSize="large">🍣🍕🍣🍕🍣</Typography>
+                  <StackSpacer />
+                  <Typography fontSize="large">🍣🍕🍣🍕🍣</Typography>
+                </HStack>
 
-              <Typography fontSize="xxx-large">🍕</Typography>
+                <Typography fontSize="xxx-large">🍕</Typography>
 
-              <Typography color={palette.brown} textDecoration="underline">
-                Typographyでマークアップした文章マークアップした文章Typographyでマークアップした文章Typographyでマークアップした文章マークアップした文章Typographyでマークアップした文章Typographyでマークアップした文章マークアップした文章Typographyでマークアップした文章Typographyでマークアップした文章マークアップした文章Typographyでマークアップした文章
-              </Typography>
+                <Typography color={palette.brown} textDecoration="underline">
+                  Typographyでマークアップした文章マークアップした文章
+                </Typography>
+              </VStack>
 
-              <StackSpacer />
-
-              <Box w="100%">
+              <Box>
                 <FormSample />
               </Box>
 
-              <Button label="primary button" primary onPress={() => console.log('pressed')} />
-              <Button label="DANGER!!!" danger onPress={() => console.log('pressed')} />
+              <VStack spacing={4}>
+                <Button label="primary button" primary onPress={() => console.log('pressed')} />
+                <Button label="DANGER!!!" danger onPress={() => console.log('pressed')} />
+              </VStack>
             </VStack>
 
             <StatusBar style="auto" />

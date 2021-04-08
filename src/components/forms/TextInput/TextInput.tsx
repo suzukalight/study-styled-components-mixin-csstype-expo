@@ -47,7 +47,7 @@ export type TextInputProps = TextInputStyledProps & {
 
 export const TextInput = ({ label, ...props }: TextInputProps) => {
   return (
-    <VStack w="100%">
+    <VStack>
       {label && (
         <Typography w="100%" textAlign="left">
           {label}

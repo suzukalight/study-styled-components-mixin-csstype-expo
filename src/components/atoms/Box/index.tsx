@@ -19,6 +19,8 @@ export const BoxStyled = styled.View<BoxStyledProps>`
   justify-content: space-between;
   align-items: stretch;
 
+  width: 100%;
+
   ${layoutMixin}
   ${spaceMixin}
   ${flexboxMixin}
