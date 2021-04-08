@@ -38,11 +38,6 @@ export default function App() {
               <Box>
                 <FormSample />
               </Box>
-
-              <VStack spacing={4}>
-                <Button label="primary button" primary onPress={() => console.log('pressed')} />
-                <Button label="DANGER!!!" danger onPress={() => console.log('pressed')} />
-              </VStack>
             </VStack>
 
             <StatusBar style="auto" />

@@ -31,9 +31,14 @@ const plans = [
 ];
 
 export const FormSample = () => {
-  const { control, handleSubmit } = useForm<FormData>({
+  const {
+    control,
+    formState: { isDirty, isValid },
+    handleSubmit,
+  } = useForm<FormData>({
     resolver: yupResolver(schema),
     defaultValues: { agreement: false },
+    mode: 'onChange', // FIXME: パフォーマンス的に良くないとのこと
   });
   const onSubmit = (data: FormData) => console.log(data);
 
@@ -65,7 +70,14 @@ export const FormSample = () => {
         />
       </Box>
 
-      <Button label="送信" onPress={handleSubmit(onSubmit)} w="100%" h="64px" />
+      <Button
+        primary
+        w="100%"
+        h="64px"
+        label="送信"
+        onPress={handleSubmit(onSubmit)}
+        disabled={isDirty && !isValid}
+      />
     </VStack>
   );
 };
