@@ -2,12 +2,11 @@ import React from 'react';
 import { FieldValues, Controller, DeepMap, FieldError } from 'react-hook-form';
 
 import { TextInput, TextInputProps } from './TextInput';
+import { VStack } from '../../atoms/VStack';
 import { Typography } from '../../atoms/Typography';
 
 import { RhfProps } from '../type';
 import { palette } from '../../styles/color';
-import { VStack } from '../../atoms/VStack';
-import { Box } from '../../atoms/Box';
 
 export type RhfTextInputProps<T extends FieldValues> = TextInputProps & RhfProps<T>;
 

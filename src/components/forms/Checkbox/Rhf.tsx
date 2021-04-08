@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FieldValues, Controller, DeepMap, FieldError } from 'react-hook-form';
 
 import { Checkbox, CheckboxCommonProps } from './Checkbox';
+import { VStack } from '../../atoms/VStack';
 import { Typography } from '../../atoms/Typography';
 
 import { RhfProps } from '../type';
@@ -25,7 +26,7 @@ export const RhfCheckbox = <T extends FieldValues>({
       rules={rules}
       defaultValue={defaultValue}
       render={({ field: { onChange, onBlur, value }, formState: { errors } }) => (
-        <>
+        <VStack>
           <Checkbox
             {...styles}
             value={value as boolean}
@@ -38,7 +39,7 @@ export const RhfCheckbox = <T extends FieldValues>({
               {(errors[name] as DeepMap<FieldValues, FieldError>)?.message}
             </Typography>
           )}
-        </>
+        </VStack>
       )}
     />
   );

@@ -24,10 +24,11 @@ export const TextInputStyled = styled(RnTextInput)`
   line-height: 20px;
 
   width: 100%;
-  height: 32px;
+  height: 44px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 24px 12px;
+  padding-left: 8px;
+  padding-right: 8px;
 
   ${layoutMixin}
   ${spaceMixin}
