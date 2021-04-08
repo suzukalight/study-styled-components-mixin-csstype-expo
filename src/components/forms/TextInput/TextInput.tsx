@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { TextInput as RnTextInput } from 'react-native';
+import { KeyboardType, TextInput as RnTextInput } from 'react-native';
 import styled from 'styled-components/native';
 
 import { Typography } from '../../atoms/Typography';
@@ -38,12 +38,18 @@ export const TextInputStyled = styled(RnTextInput)`
   ${colorMixin}
 `;
 
-export type TextInputProps = TextInputStyledProps & {
-  label?: ReactNode;
-  value?: any;
-  onBlur?: () => void;
-  onChangeText?: (text: string) => void;
+type RnTextInputProps = {
+  keyboardType?: KeyboardType;
+  secureTextEntry?: boolean;
 };
+
+export type TextInputProps = TextInputStyledProps &
+  RnTextInputProps & {
+    label?: ReactNode;
+    value?: any;
+    onBlur?: () => void;
+    onChangeText?: (text: string) => void;
+  };
 
 export const TextInput = ({ label, ...props }: TextInputProps) => {
   return (

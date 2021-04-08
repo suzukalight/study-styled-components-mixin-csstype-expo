@@ -40,11 +40,16 @@ export const FormSample = () => {
   return (
     <VStack spacing={4}>
       <Box>
-        <RhfTextInput control={control} name="username" label="ユーザ名" />
+        <RhfTextInput
+          control={control}
+          name="username"
+          label="ユーザ名"
+          keyboardType="email-address"
+        />
       </Box>
 
       <Box>
-        <RhfTextInput control={control} name="password" label="パスワード" />
+        <RhfTextInput control={control} name="password" label="パスワード" secureTextEntry={true} />
       </Box>
 
       <Box>
