@@ -12,6 +12,7 @@ type ButtonStyles = Partial<LayoutProps> &
   Partial<FlexboxProps> & {
     primary?: boolean;
     danger?: boolean;
+    disabled?: boolean;
   };
 
 type ButtonStyledProps = ButtonStyles & {
@@ -30,10 +31,10 @@ const ButtonContainer = styled.TouchableOpacity`
   ${flexboxMixin}
   ${layoutMixin}
 
-  background-color: ${({ theme, primary, danger }: ButtonStyledProps) =>
-    primary ? theme.primary : danger ? palette.red : 'transparent'};
-  border: ${({ primary, danger }: ButtonStyledProps) =>
-    primary || danger ? 'none' : `1px solid ${palette.gray}`};
+  background-color: ${({ theme, primary, danger, disabled }: ButtonStyledProps) =>
+    disabled ? palette.lightgray : primary ? theme.primary : danger ? palette.red : 'transparent'};
+  border: ${({ primary, danger, disabled }: ButtonStyledProps) =>
+    disabled ? palette.lightgray : primary || danger ? 'none' : `1px solid ${palette.gray}`};
 `;
 
 export type ButtonProps = ButtonStyles & {
@@ -41,7 +42,7 @@ export type ButtonProps = ButtonStyles & {
   onPress?: (event: GestureResponderEvent) => void;
 };
 
-export const Button = ({ label, primary, danger, onPress, ...styles }: ButtonProps) => {
+export const Button = ({ label, primary, danger, disabled, onPress, ...styles }: ButtonProps) => {
   const theme = useContext<ThemeColors>(ThemeContext);
 
   return (
@@ -52,11 +53,12 @@ export const Button = ({ label, primary, danger, onPress, ...styles }: ButtonPro
       theme={theme}
       primary={primary}
       danger={danger}
+      disabled={disabled}
     >
       <Typography
         fontSize="large"
-        fontWeight={primary || danger ? 'bold' : 'normal'}
-        color={primary || danger ? palette.white : palette.black}
+        fontWeight={disabled ? 'normal' : primary || danger ? 'bold' : 'normal'}
+        color={disabled ? palette.white : primary || danger ? palette.white : palette.black}
       >
         {label}
       </Typography>
