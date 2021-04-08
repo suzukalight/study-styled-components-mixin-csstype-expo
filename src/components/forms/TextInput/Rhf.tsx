@@ -6,6 +6,8 @@ import { Typography } from '../../atoms/Typography';
 
 import { RhfProps } from '../type';
 import { palette } from '../../styles/color';
+import { VStack } from '../../atoms/VStack';
+import { Box } from '../../atoms/Box';
 
 export type RhfTextInputProps<T extends FieldValues> = TextInputProps & RhfProps<T>;
 
@@ -23,7 +25,7 @@ export const RhfTextInput = <T extends FieldValues>({
       rules={rules}
       defaultValue={defaultValue}
       render={({ field: { onChange, onBlur, value }, formState: { errors } }) => (
-        <>
+        <VStack w="100%">
           <TextInput
             {...styles}
             value={value}
@@ -35,7 +37,7 @@ export const RhfTextInput = <T extends FieldValues>({
               {(errors[name] as DeepMap<FieldValues, FieldError>)?.message}
             </Typography>
           )}
-        </>
+        </VStack>
       )}
     />
   );

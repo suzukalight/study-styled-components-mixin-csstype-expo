@@ -3,6 +3,7 @@ import { TextInput as RnTextInput } from 'react-native';
 import styled from 'styled-components/native';
 
 import { Typography } from '../../atoms/Typography';
+import { VStack } from '../../atoms/VStack';
 
 import { backgroundMixin, BackgroundProps } from '../../styles/background';
 import { borderMixin, BorderProps } from '../../styles/border';
@@ -45,9 +46,13 @@ export type TextInputProps = TextInputStyledProps & {
 
 export const TextInput = ({ label, ...props }: TextInputProps) => {
   return (
-    <>
-      {label && <Typography w="100%" textAlign="left">{label}</Typography>}
+    <VStack w="100%">
+      {label && (
+        <Typography w="100%" textAlign="left">
+          {label}
+        </Typography>
+      )}
       <TextInputStyled {...props} />
-    </>
+    </VStack>
   );
 };
