@@ -5,7 +5,7 @@ import { VStack } from '../../components/atoms/VStack';
 import { StackSpacer } from '../../components/atoms/StackSpacer';
 import { Typography } from '../../components/atoms/Typography';
 import { palette } from '../../components/styles/color';
-import { FormSample } from '../../components/organisms/SignUpForm';
+import { SignUpForm } from '../../components/organisms/SignUpForm';
 import { Box } from '../../components/atoms/Box';
 
 export const SignUp = () => (
@@ -26,7 +26,7 @@ export const SignUp = () => (
       </VStack>
 
       <Box>
-        <FormSample />
+        <SignUpForm />
       </Box>
     </VStack>
   </Box>

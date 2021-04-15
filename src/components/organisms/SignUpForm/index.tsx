@@ -1,5 +1,6 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useCallback } from 'react';
+import { GestureResponderEvent } from 'react-native';
+import { useForm, Control } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
@@ -9,6 +10,8 @@ import { Button } from '../../atoms/Button';
 import { RhfTextInput } from '../../forms/TextInput/Rhf';
 import { RhfCheckbox } from '../../forms/Checkbox/Rhf';
 import { RhfRadioGroup } from '../../forms/RadioGroup/Rhf';
+
+import { RadioItem } from '../../forms/RadioGroup/type';
 
 type FormData = {
   username: string;
@@ -24,60 +27,82 @@ const schema = yup.object().shape({
   agreement: yup.boolean().isTrue('利用規約に同意してください'),
 });
 
-const plans = [
+const plans: RadioItem[] = [
   { value: 'free', title: 'フリープラン' },
   { value: 'professional', title: 'プロフェッショナルプラン' },
   { value: 'enterprise', title: '企業プラン' },
 ];
 
-export const FormSample = () => {
+type SignUpFormPresenterProps = {
+  control: Control<FormData>;
+  disableSubmit: boolean;
+  onPressSubmit: (event: GestureResponderEvent) => void;
+};
+
+export const SignUpFormPresenter = ({
+  control,
+  onPressSubmit,
+  disableSubmit,
+}: SignUpFormPresenterProps) => (
+  <VStack spacing={4}>
+    <Box>
+      <RhfTextInput
+        control={control}
+        name="username"
+        label="ユーザ名"
+        keyboardType="email-address"
+      />
+    </Box>
+
+    <Box>
+      <RhfTextInput control={control} name="password" label="パスワード" secureTextEntry={true} />
+    </Box>
+
+    <Box>
+      <RhfRadioGroup control={control} name="plan" label="プランを選択" items={plans} />
+    </Box>
+
+    <Box>
+      <RhfCheckbox
+        control={control}
+        name="agreement"
+        label="利用規約への同意"
+        title="利用規約に同意します"
+      />
+    </Box>
+
+    <Button
+      primary
+      w="100%"
+      h="64px"
+      label="送信"
+      onPress={onPressSubmit}
+      disabled={disableSubmit}
+    />
+  </VStack>
+);
+
+export const SignUpForm = () => {
   const {
     control,
     formState: { isDirty, isValid },
     handleSubmit,
   } = useForm<FormData>({
     resolver: yupResolver(schema),
-    defaultValues: { agreement: false },
+    defaultValues: { agreement: false } as Partial<FormData>,
     mode: 'onChange', // FIXME: パフォーマンス的に良くないとのこと
   });
-  const onSubmit = (data: FormData) => console.log(data);
+
+  const onSubmit = useCallback((data: FormData) => console.log(data), []);
+
+  const onPressSubmit = handleSubmit(onSubmit);
+  const disableSubmit = isDirty && !isValid;
 
   return (
-    <VStack spacing={4}>
-      <Box>
-        <RhfTextInput
-          control={control}
-          name="username"
-          label="ユーザ名"
-          keyboardType="email-address"
-        />
-      </Box>
-
-      <Box>
-        <RhfTextInput control={control} name="password" label="パスワード" secureTextEntry={true} />
-      </Box>
-
-      <Box>
-        <RhfRadioGroup control={control} name="plan" label="プランを選択" items={plans} />
-      </Box>
-
-      <Box>
-        <RhfCheckbox
-          control={control}
-          name="agreement"
-          label="利用規約への同意"
-          title="利用規約に同意します"
-        />
-      </Box>
-
-      <Button
-        primary
-        w="100%"
-        h="64px"
-        label="送信"
-        onPress={handleSubmit(onSubmit)}
-        disabled={isDirty && !isValid}
-      />
-    </VStack>
+    <SignUpFormPresenter
+      control={control}
+      disableSubmit={disableSubmit}
+      onPressSubmit={onPressSubmit}
+    />
   );
 };
