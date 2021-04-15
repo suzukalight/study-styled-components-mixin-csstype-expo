@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { KeyboardType, TextInput as RnTextInput } from 'react-native';
 import styled from 'styled-components/native';
 
-import { Typography } from '../../atoms/Typography';
+import { FormLabel } from '../FormLabel';
 import { VStack } from '../../atoms/VStack';
 
 import { backgroundMixin, BackgroundProps } from '../../styles/background';
@@ -39,6 +39,7 @@ export const TextInputStyled = styled(RnTextInput)`
 `;
 
 type RnTextInputProps = {
+  required?: boolean;
   keyboardType?: KeyboardType;
   secureTextEntry?: boolean;
 };
@@ -51,14 +52,10 @@ export type TextInputProps = TextInputStyledProps &
     onChangeText?: (text: string) => void;
   };
 
-export const TextInput = ({ label, ...props }: TextInputProps) => {
+export const TextInput = ({ label, required, ...props }: TextInputProps) => {
   return (
     <VStack>
-      {label && (
-        <Typography w="100%" textAlign="left">
-          {label}
-        </Typography>
-      )}
+      <FormLabel label={label} required={required} />
       <TextInputStyled {...props} />
     </VStack>
   );

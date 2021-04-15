@@ -1,7 +1,8 @@
-import React, { useCallback } from 'react';
+import React, { ReactNode, useCallback } from 'react';
 import { CheckBox as RneCheckBox } from 'react-native-elements';
 import styled from 'styled-components/native';
 import { Box } from '../../atoms/Box';
+import { VStack } from '../../atoms/VStack';
 
 import { backgroundMixin, BackgroundProps } from '../../styles/background';
 import { borderMixin, BorderProps } from '../../styles/border';
@@ -9,6 +10,7 @@ import { colorMixin, ColorProps } from '../../styles/color';
 import { layoutMixin, LayoutProps } from '../../styles/layout';
 import { spaceMixin, SpaceProps } from '../../styles/space';
 import { FontProps, fontMixin } from '../../styles/typography';
+import { FormLabel } from '../FormLabel';
 
 export type CheckboxStyledProps = Partial<Omit<FontProps, 'textAlign'>> &
   Partial<ColorProps> &
@@ -31,6 +33,8 @@ export const CheckboxStyled = styled(Box)`
 export type CheckboxCommonProps = CheckboxStyledProps & {
   title?: string | React.ReactElement<{}, string | React.JSXElementConstructor<any>>;
   defaultValue?: boolean;
+  label?: ReactNode;
+  required?: boolean;
   onBlur?: () => void;
   onChange?: (...event: any[]) => void;
 };
@@ -39,28 +43,39 @@ export type CheckboxProps = CheckboxCommonProps & {
   value: boolean;
 };
 
-export const Checkbox = ({ value, defaultValue, onChange, ...props }: CheckboxProps) => {
+export const Checkbox = ({
+  value,
+  defaultValue,
+  label,
+  required,
+  onChange,
+  ...props
+}: CheckboxProps) => {
   const handleChange = useCallback(() => {
     const newValue = !value;
     if (onChange) onChange(newValue);
   }, [value, onChange]);
 
   return (
-    <CheckboxStyled w="100%" display="flex" flexDirection="column" justifyContent="flex-start">
-      <RneCheckBox
-        {...props}
-        containerStyle={{
-          backgroundColor: 'transparent',
-          borderWidth: 0,
-          padding: 0,
-          margin: 0,
-          marginLeft: 0,
-          marginRight: 0,
-        }}
-        checked={value}
-        onIconPress={handleChange}
-        onPress={handleChange}
-      />
-    </CheckboxStyled>
+    <VStack>
+      <FormLabel label={label} required={required} />
+
+      <CheckboxStyled w="100%" display="flex" flexDirection="column" justifyContent="flex-start">
+        <RneCheckBox
+          {...props}
+          containerStyle={{
+            backgroundColor: 'transparent',
+            borderWidth: 0,
+            padding: 0,
+            margin: 0,
+            marginLeft: 0,
+            marginRight: 0,
+          }}
+          checked={value}
+          onIconPress={handleChange}
+          onPress={handleChange}
+        />
+      </CheckboxStyled>
+    </VStack>
   );
 };

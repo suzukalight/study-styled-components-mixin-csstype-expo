@@ -11,16 +11,16 @@ import { palette } from '../../styles/color';
 export type RhfRadioGroupProps<T extends FieldValues> = RadioGroupCommonProps &
   RhfProps<T> & {
     label?: ReactNode;
+    required?: boolean;
   };
 
 export const RhfRadioGroup = <T extends FieldValues>({
   control,
   name,
   rules,
-  label,
   items,
   defaultValue,
-  ...styles
+  ...props
 }: RhfRadioGroupProps<T>) => (
   <Controller
     control={control}
@@ -29,14 +29,8 @@ export const RhfRadioGroup = <T extends FieldValues>({
     defaultValue={defaultValue}
     render={({ field: { onChange, onBlur, value }, formState: { errors } }) => (
       <VStack>
-        {label && (
-          <Typography w="100%" textAlign="left">
-            {label}
-          </Typography>
-        )}
-
         <RadioGroup
-          {...styles}
+          {...props}
           items={items}
           value={value as string} // FIXME
           defaultValue={defaultValue}

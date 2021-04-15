@@ -11,15 +11,15 @@ import { palette } from '../../styles/color';
 export type RhfCheckboxProps<T extends FieldValues> = CheckboxCommonProps &
   RhfProps<T> & {
     label?: ReactNode;
+    required?: boolean;
   };
 
 export const RhfCheckbox = <T extends FieldValues>({
   control,
   name,
   rules,
-  label,
   defaultValue,
-  ...styles
+  ...props
 }: RhfCheckboxProps<T>) => (
   <Controller
     control={control}
@@ -28,14 +28,8 @@ export const RhfCheckbox = <T extends FieldValues>({
     defaultValue={defaultValue}
     render={({ field: { onChange, onBlur, value }, formState: { errors } }) => (
       <VStack>
-        {label && (
-          <Typography w="100%" textAlign="left">
-            {label}
-          </Typography>
-        )}
-
         <Checkbox
-          {...styles}
+          {...props}
           value={value as boolean}
           defaultValue={defaultValue}
           onBlur={onBlur}
