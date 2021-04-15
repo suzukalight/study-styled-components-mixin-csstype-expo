@@ -3,12 +3,12 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import { Box } from './atoms/Box';
-import { VStack } from './atoms/VStack';
-import { Button } from './atoms/Button';
-import { RhfTextInput } from './forms/TextInput/Rhf';
-import { RhfCheckbox } from './forms/Checkbox/Rhf';
-import { RhfRadioGroup } from './forms/RadioGroup/Rhf';
+import { Box } from '../../atoms/Box';
+import { VStack } from '../../atoms/VStack';
+import { Button } from '../../atoms/Button';
+import { RhfTextInput } from '../../forms/TextInput/Rhf';
+import { RhfCheckbox } from '../../forms/Checkbox/Rhf';
+import { RhfRadioGroup } from '../../forms/RadioGroup/Rhf';
 
 type FormData = {
   username: string;
