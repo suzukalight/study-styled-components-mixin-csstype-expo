@@ -16,6 +16,7 @@ import { RadioItem } from '../../forms/RadioGroup/type';
 type FormData = {
   username: string;
   password: string;
+  nickname: string;
   plan: string;
   agreement: boolean;
 };
@@ -50,16 +51,27 @@ export const SignUpFormPresenter = ({
         control={control}
         name="username"
         label="ユーザ名"
+        required
         keyboardType="email-address"
       />
     </Box>
 
     <Box>
-      <RhfTextInput control={control} name="password" label="パスワード" secureTextEntry={true} />
+      <RhfTextInput
+        control={control}
+        name="password"
+        label="パスワード"
+        required
+        secureTextEntry={true}
+      />
     </Box>
 
     <Box>
-      <RhfRadioGroup control={control} name="plan" label="プランを選択" items={plans} />
+      <RhfTextInput control={control} name="nickname" label="ニックネーム" />
+    </Box>
+
+    <Box>
+      <RhfRadioGroup control={control} name="plan" label="プランを選択" items={plans} required />
     </Box>
 
     <Box>
@@ -68,6 +80,7 @@ export const SignUpFormPresenter = ({
         name="agreement"
         label="利用規約への同意"
         title="利用規約に同意します"
+        required
       />
     </Box>
 
