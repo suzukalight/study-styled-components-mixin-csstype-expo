@@ -25,14 +25,16 @@ export const borderMixin = css<Partial<BorderProps>>`
   ${({ borderWidth }) => borderWidth != null && `border-width: ${borderWidth};`}
   ${({ borderStyle }) => borderStyle != null && `border-style: ${borderStyle};`}
   ${({ borderColor }) => borderColor != null && `border-color: ${borderColor};`}
-  ${({ borderRadius }) => borderRadius != null && `border-raduis: ${borderRadius};`}
-  ${({ rounded }) => rounded != null && `border-raduis: ${rounded};`}
+
   ${({ borderTop }) => borderTop != null && `border-top: ${borderTop};`}
   ${({ borderRight }) => borderRight != null && `border-right: ${borderRight};`}
   ${({ borderBottom }) => borderBottom != null && `border-bottom: ${borderBottom};`}
   ${({ borderLeft }) => borderLeft != null && `border-left: ${borderLeft};`}
   ${({ borderX }) => borderX != null && `border-top: ${borderX}; border-bottom: ${borderX};`}
   ${({ borderY }) => borderY != null && `border-left: ${borderY}; border-right: ${borderY};`}
+
+  ${({ borderRadius }) => borderRadius != null && `border-raduis: ${borderRadius};`}
+  ${({ rounded }) => rounded != null && `border-raduis: ${rounded};`}
   ${({ borderTopRightRadius }) =>
     borderTopRightRadius != null && `border-top-right-raduis: ${borderTopRightRadius};`}
   ${({ borderBottomRightRadius }) =>

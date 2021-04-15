@@ -61,9 +61,9 @@ export const spaceMixin = css<Partial<SpaceProps>>`
     `}
 
   ${({ mt }) => mt != null && `margin-top: ${sp(mt)};`}
-  ${({ mr }) => mr != null && `margin-top: ${sp(mr)};`}
-  ${({ mb }) => mb != null && `margin-top: ${sp(mb)};`}
-  ${({ ml }) => ml != null && `margin-top: ${sp(ml)};`}
+  ${({ mr }) => mr != null && `margin-right: ${sp(mr)};`}
+  ${({ mb }) => mb != null && `margin-bottom: ${sp(mb)};`}
+  ${({ ml }) => ml != null && `margin-left: ${sp(ml)};`}
 
   ${({ p }) => p != null && `padding: ${sp(p)};`}
 
@@ -82,7 +82,7 @@ export const spaceMixin = css<Partial<SpaceProps>>`
     `}
 
   ${({ pt }) => pt != null && `padding-top: ${sp(pt)};`}
-  ${({ pr }) => pr != null && `padding-top: ${sp(pr)};`}
-  ${({ pb }) => pb != null && `padding-top: ${sp(pb)};`}
-  ${({ pl }) => pl != null && `padding-top: ${sp(pl)};`}
+  ${({ pr }) => pr != null && `padding-right: ${sp(pr)};`}
+  ${({ pb }) => pb != null && `padding-bottom: ${sp(pb)};`}
+  ${({ pl }) => pl != null && `padding-left: ${sp(pl)};`}
 `;
