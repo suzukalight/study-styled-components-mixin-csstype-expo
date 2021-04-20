@@ -3,12 +3,14 @@ import styled from 'styled-components/native';
 
 import { LayoutProps, layoutMixin } from '../../../styles/layout';
 import { sizeValueToPixel, SpaceProps, Space, spaceMixin } from '../../../styles/space';
-import { ColorProps } from '../../../styles/color';
+import { flexboxMixin, FlexboxProps } from '../../../styles/flexbox';
 import { BackgroundProps, backgroundMixin } from '../../../styles/background';
+import { borderMixin, BorderProps } from '../../../styles/border';
 
 type VStackStyledProps = Partial<LayoutProps> &
   Partial<SpaceProps> &
-  Partial<ColorProps> &
+  Partial<FlexboxProps> &
+  Partial<BorderProps> &
   Partial<BackgroundProps>;
 
 export const VStackStyled = styled.View<VStackStyledProps>`
@@ -21,7 +23,9 @@ export const VStackStyled = styled.View<VStackStyledProps>`
 
   ${layoutMixin}
   ${spaceMixin}
+  ${flexboxMixin}
   ${backgroundMixin}
+  ${borderMixin}
 `;
 
 export type VStackProps = VStackStyledProps & {
