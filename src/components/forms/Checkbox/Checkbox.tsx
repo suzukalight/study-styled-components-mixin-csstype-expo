@@ -4,12 +4,12 @@ import styled from 'styled-components/native';
 import { Box } from '../../atoms/Box';
 import { VStack } from '../../atoms/VStack';
 
-import { backgroundMixin, BackgroundProps } from '../../styles/background';
-import { borderMixin, BorderProps } from '../../styles/border';
-import { colorMixin, ColorProps } from '../../styles/color';
-import { layoutMixin, LayoutProps } from '../../styles/layout';
-import { spaceMixin, SpaceProps } from '../../styles/space';
-import { FontProps, fontMixin } from '../../styles/typography';
+import { backgroundMixin, BackgroundProps } from '../../../styles/background';
+import { borderMixin, BorderProps } from '../../../styles/border';
+import { colorMixin, ColorProps } from '../../../styles/color';
+import { layoutMixin, LayoutProps } from '../../../styles/layout';
+import { spaceMixin, SpaceProps } from '../../../styles/space';
+import { FontProps, fontMixin } from '../../../styles/typography';
 import { FormLabel } from '../FormLabel';
 
 export type CheckboxStyledProps = Partial<Omit<FontProps, 'textAlign'>> &

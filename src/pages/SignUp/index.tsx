@@ -4,9 +4,10 @@ import { HStack } from '../../components/atoms/HStack';
 import { VStack } from '../../components/atoms/VStack';
 import { StackSpacer } from '../../components/atoms/StackSpacer';
 import { Typography } from '../../components/atoms/Typography';
-import { palette } from '../../components/styles/color';
 import { SignUpForm } from '../../components/organisms/SignUpForm';
 import { Box } from '../../components/atoms/Box';
+
+import { palette } from '../../styles/color';
 
 export const SignUp = () => (
   <Box w="100%" maxW="100%" h="100%" display="flex" justifyContent="center" alignItems="center">

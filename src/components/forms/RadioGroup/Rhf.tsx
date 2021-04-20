@@ -6,7 +6,7 @@ import { VStack } from '../../atoms/VStack';
 import { Typography } from '../../atoms/Typography';
 
 import { RhfProps } from '../type';
-import { palette } from '../../styles/color';
+import { palette } from '../../../styles/color';
 
 export type RhfRadioGroupProps<T extends FieldValues> = RadioGroupCommonProps &
   RhfProps<T> & {

@@ -6,12 +6,12 @@ import { RadioItem } from './type';
 
 import { Box } from '../../atoms/Box';
 
-import { backgroundMixin, BackgroundProps } from '../../styles/background';
-import { borderMixin, BorderProps } from '../../styles/border';
-import { colorMixin, ColorProps } from '../../styles/color';
-import { layoutMixin, LayoutProps } from '../../styles/layout';
-import { spaceMixin, SpaceProps } from '../../styles/space';
-import { FontProps, fontMixin } from '../../styles/typography';
+import { backgroundMixin, BackgroundProps } from '../../../styles/background';
+import { borderMixin, BorderProps } from '../../../styles/border';
+import { colorMixin, ColorProps } from '../../../styles/color';
+import { layoutMixin, LayoutProps } from '../../../styles/layout';
+import { spaceMixin, SpaceProps } from '../../../styles/space';
+import { FontProps, fontMixin } from '../../../styles/typography';
 
 export type RadioButtonStyledProps = Partial<Omit<FontProps, 'textAlign'>> &
   Partial<ColorProps> &

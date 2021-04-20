@@ -5,11 +5,11 @@ import { HStack } from '../../components/atoms/HStack';
 import { VStack } from '../../components/atoms/VStack';
 import { StackSpacer } from '../../components/atoms/StackSpacer';
 import { Typography } from '../../components/atoms/Typography';
-import { palette } from '../../components/styles/color';
 import { Box } from '../../components/atoms/Box';
 import { Button } from '../../components/atoms/Button';
 import { Center } from '../../components/atoms/Box/Center';
 
+import { palette } from '../../styles/color';
 import { RootStackParamList } from '../routes';
 
 export type MainProps = StackScreenProps<RootStackParamList, 'Main'>;

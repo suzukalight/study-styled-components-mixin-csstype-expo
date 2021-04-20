@@ -3,9 +3,9 @@ import { GestureResponderEvent } from 'react-native';
 import { ThemeContext } from 'styled-components';
 import styled from 'styled-components/native';
 
-import { palette, ThemeColors } from '../../styles/color';
-import { FlexboxProps, flexboxMixin } from '../../styles/flexbox';
-import { LayoutProps, layoutMixin } from '../../styles/layout';
+import { palette, ThemeColors } from '../../../styles/color';
+import { FlexboxProps, flexboxMixin } from '../../../styles/flexbox';
+import { LayoutProps, layoutMixin } from '../../../styles/layout';
 import { Typography } from '../Typography';
 
 type ButtonStyles = Partial<LayoutProps> &

@@ -5,12 +5,12 @@ import styled from 'styled-components/native';
 import { FormLabel } from '../FormLabel';
 import { VStack } from '../../atoms/VStack';
 
-import { backgroundMixin, BackgroundProps } from '../../styles/background';
-import { borderMixin, BorderProps } from '../../styles/border';
-import { colorMixin, ColorProps } from '../../styles/color';
-import { layoutMixin, LayoutProps } from '../../styles/layout';
-import { spaceMixin, SpaceProps } from '../../styles/space';
-import { FontProps, fontMixin } from '../../styles/typography';
+import { backgroundMixin, BackgroundProps } from '../../../styles/background';
+import { borderMixin, BorderProps } from '../../../styles/border';
+import { colorMixin, ColorProps } from '../../../styles/color';
+import { layoutMixin, LayoutProps } from '../../../styles/layout';
+import { spaceMixin, SpaceProps } from '../../../styles/space';
+import { FontProps, fontMixin } from '../../../styles/typography';
 
 export type TextInputStyledProps = Partial<Omit<FontProps, 'textAlign'>> &
   Partial<ColorProps> &

@@ -8,7 +8,7 @@ import { Main } from './Main';
 import { UserDetail } from './UserDetail';
 
 import { RootStackParamList } from './routes';
-import { palette, ThemeColors } from '../components/styles/color';
+import { palette, ThemeColors } from '../styles/color';
 
 const Stack = createStackNavigator<RootStackParamList>();
 

@@ -1,11 +1,11 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components/native';
 
-import { LayoutProps, layoutMixin } from '../../styles/layout';
-import { SpaceProps, spaceMixin } from '../../styles/space';
-import { flexboxMixin, FlexboxProps } from '../../styles/flexbox';
-import { BackgroundProps, backgroundMixin } from '../../styles/background';
-import { borderMixin, BorderProps } from '../../styles/border';
+import { LayoutProps, layoutMixin } from '../../../styles/layout';
+import { SpaceProps, spaceMixin } from '../../../styles/space';
+import { flexboxMixin, FlexboxProps } from '../../../styles/flexbox';
+import { BackgroundProps, backgroundMixin } from '../../../styles/background';
+import { borderMixin, BorderProps } from '../../../styles/border';
 
 export type BoxStyledProps = Partial<LayoutProps> &
   Partial<SpaceProps> &

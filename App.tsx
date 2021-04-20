@@ -4,7 +4,7 @@ import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-component
 import { ThemeProvider as ReactNativeElementsThemeProvider } from 'react-native-elements';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { themeColors } from './src/components/styles/color';
+import { themeColors } from './src/styles/color';
 import { Navigation } from './src/pages/Navigation';
 
 export const App = () => (

@@ -1,10 +1,10 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components/native';
 
-import { LayoutProps, layoutMixin } from '../../styles/layout';
-import { sizeValueToPixel, SpaceProps, Space, spaceMixin } from '../../styles/space';
-import { ColorProps } from '../../styles/color';
-import { BackgroundProps, backgroundMixin } from '../../styles/background';
+import { LayoutProps, layoutMixin } from '../../../styles/layout';
+import { sizeValueToPixel, SpaceProps, Space, spaceMixin } from '../../../styles/space';
+import { ColorProps } from '../../../styles/color';
+import { BackgroundProps, backgroundMixin } from '../../../styles/background';
 
 type VStackStyledProps = Partial<LayoutProps> &
   Partial<SpaceProps> &

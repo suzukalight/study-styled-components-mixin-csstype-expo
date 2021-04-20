@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 import { Box } from '../../atoms/Box';
 import { Typography } from '../../atoms/Typography';
 
-import { palette } from '../../styles/color';
+import { palette } from '../../../styles/color';
 
 export type FormLabelProps = {
   label?: ReactNode;
