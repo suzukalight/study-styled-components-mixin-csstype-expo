@@ -1,5 +1,7 @@
+import { MainTabParamList } from './Main/routes';
+import { AuthStackParamList } from './Auth/routes';
+
 export type RootStackParamList = {
-  Main: undefined;
-  SignUp: undefined;
-  UserDetail: { id: string };
+  Main: { screen: keyof MainTabParamList };
+  Auth: { screen: keyof AuthStackParamList };
 };
