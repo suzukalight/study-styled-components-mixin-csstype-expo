@@ -4,11 +4,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { SignUp } from './SignUp';
 import { Main } from './Main';
+import { UserDetail } from './UserDetail';
 
-export type RootStackParamList = {
-  Main: undefined;
-  SignUp: undefined;
-};
+import { RootStackParamList } from './routes';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -18,6 +16,7 @@ export const Navigation = () => {
       <Stack.Navigator initialRouteName="Main">
         <Stack.Screen name="Main" component={Main} options={{ title: 'メイン画面' }} />
         <Stack.Screen name="SignUp" component={SignUp} options={{ title: 'メンバー登録' }} />
+        <Stack.Screen name="UserDetail" component={UserDetail} options={{ title: 'ユーザ画面' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

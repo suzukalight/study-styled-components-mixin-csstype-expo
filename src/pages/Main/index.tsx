@@ -1,5 +1,5 @@
 import React from 'react';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { StackScreenProps } from '@react-navigation/stack';
 
 import { HStack } from '../../components/atoms/HStack';
 import { VStack } from '../../components/atoms/VStack';
@@ -8,14 +8,11 @@ import { Typography } from '../../components/atoms/Typography';
 import { palette } from '../../components/styles/color';
 import { Box } from '../../components/atoms/Box';
 import { Button } from '../../components/atoms/Button';
-
-import { RootStackParamList } from '../Navigation';
 import { Center } from '../../components/atoms/Box/Center';
 
-type MainNavigationProps = StackNavigationProp<RootStackParamList, 'Main'>;
-export type MainProps = {
-  navigation: MainNavigationProps;
-};
+import { RootStackParamList } from '../routes';
+
+export type MainProps = StackScreenProps<RootStackParamList, 'Main'>;
 
 export const Main = ({ navigation }: MainProps) => (
   <Box w="100%" maxW="100%" h="100%" display="flex" justifyContent="center" alignItems="center">
@@ -35,7 +32,13 @@ export const Main = ({ navigation }: MainProps) => (
       </VStack>
 
       <Center>
-        <Button label="メンバー登録" onPress={() => navigation.navigate('SignUp')} />
+        <VStack spacing={4}>
+          <Button label="メンバー登録" onPress={() => navigation.navigate('SignUp')} />
+          <Button
+            label="ユーザ画面"
+            onPress={() => navigation.navigate('UserDetail', { id: '42' })}
+          />
+        </VStack>
       </Center>
     </VStack>
   </Box>
