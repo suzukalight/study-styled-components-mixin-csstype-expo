@@ -1,18 +1,18 @@
 import React from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
 
-import { HStack } from '../../components/atoms/HStack';
-import { VStack } from '../../components/atoms/VStack';
-import { StackSpacer } from '../../components/atoms/StackSpacer';
-import { Typography } from '../../components/atoms/Typography';
-import { Box } from '../../components/atoms/Box';
-import { Button } from '../../components/atoms/Button';
-import { Center } from '../../components/atoms/Box/Center';
+import { HStack } from '../../../components/atoms/HStack';
+import { VStack } from '../../../components/atoms/VStack';
+import { StackSpacer } from '../../../components/atoms/StackSpacer';
+import { Typography } from '../../../components/atoms/Typography';
+import { Box } from '../../../components/atoms/Box';
+import { Button } from '../../../components/atoms/Button';
+import { Center } from '../../../components/atoms/Box/Center';
 
-import { palette } from '../../styles/color';
-import { RootStackParamList } from '../routes';
+import { palette } from '../../../styles/color';
+import { MainTabParamList } from '../routes';
 
-export type UserDetailProps = StackScreenProps<RootStackParamList, 'UserDetail'>;
+export type UserDetailProps = StackScreenProps<MainTabParamList, 'UserDetail'>;
 
 export const UserDetail = ({ navigation, route }: UserDetailProps) => (
   <Box w="100%" maxW="100%" h="100%" display="flex" justifyContent="center" alignItems="center">
@@ -32,7 +32,7 @@ export const UserDetail = ({ navigation, route }: UserDetailProps) => (
       </VStack>
 
       <Center>
-        <Button label="メイン画面へ戻る" onPress={() => navigation.navigate('Main')} />
+        <Button label="メイン画面へ戻る" onPress={() => navigation.navigate('Home')} />
       </Center>
     </VStack>
   </Box>
