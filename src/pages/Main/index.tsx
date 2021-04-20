@@ -1,45 +1,46 @@
-import React from 'react';
-import { StackScreenProps } from '@react-navigation/stack';
+import React, { useContext } from 'react';
+import { RouteProp } from '@react-navigation/core';
+import {
+  BottomTabBarOptions,
+  BottomTabNavigationOptions,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs';
+import Feather from 'react-native-vector-icons/Feather';
+import { ThemeContext } from 'styled-components';
 
-import { HStack } from '../../components/atoms/HStack';
-import { VStack } from '../../components/atoms/VStack';
-import { StackSpacer } from '../../components/atoms/StackSpacer';
-import { Typography } from '../../components/atoms/Typography';
-import { Box } from '../../components/atoms/Box';
-import { Button } from '../../components/atoms/Button';
-import { Center } from '../../components/atoms/Box/Center';
+import { Home } from './Home';
+import { UserDetail } from './UserDetail';
 
-import { palette } from '../../styles/color';
-import { RootStackParamList } from '../routes';
+import { MainTabParamList } from './routes';
+import { palette, ThemeColors } from '../../styles/color';
 
-export type MainProps = StackScreenProps<RootStackParamList, 'Main'>;
+const tabIconNames: Record<keyof MainTabParamList, string> = {
+  Home: 'home',
+  UserDetail: 'user',
+};
+const getScreenOptions = (route: RouteProp<MainTabParamList, keyof MainTabParamList>) =>
+  ({
+    tabBarIcon: ({ color, size }) => (
+      <Feather name={tabIconNames[route.name]} size={size} color={color} />
+    ),
+  } as BottomTabNavigationOptions);
 
-export const Main = ({ navigation }: MainProps) => (
-  <Box w="100%" maxW="100%" h="100%" display="flex" justifyContent="center" alignItems="center">
-    <VStack spacing={4} h="100%" px={4} py={8} bgColor={palette.white}>
-      <VStack spacing={4}>
-        <HStack>
-          <Typography fontSize="large">🍣🍕🍣🍕🍣</Typography>
-          <StackSpacer />
-          <Typography fontSize="large">🍣🍕🍣🍕🍣</Typography>
-        </HStack>
+const Tab = createBottomTabNavigator<MainTabParamList>();
 
-        <Typography fontSize="xxx-large">🍕</Typography>
+export const Main = () => {
+  const theme = useContext<ThemeColors>(ThemeContext);
+  const tabBarOptions: BottomTabBarOptions = {
+    activeTintColor: theme.secondary,
+    inactiveTintColor: palette.gray,
+  };
 
-        <Typography color={palette.brown} fontSize="xx-large">
-          メイン画面
-        </Typography>
-      </VStack>
-
-      <Center>
-        <VStack spacing={4}>
-          <Button label="メンバー登録" onPress={() => navigation.navigate('SignUp')} />
-          <Button
-            label="ユーザ画面"
-            onPress={() => navigation.navigate('UserDetail', { id: '42' })}
-          />
-        </VStack>
-      </Center>
-    </VStack>
-  </Box>
-);
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => getScreenOptions(route)}
+      tabBarOptions={tabBarOptions}
+    >
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="UserDetail" component={UserDetail} initialParams={{ id: '42' }} />
+    </Tab.Navigator>
+  );
+};
