@@ -5,13 +5,13 @@ import { ThemeProvider as ReactNativeElementsThemeProvider } from 'react-native-
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { themeColors } from './src/components/styles/color';
-import { SignUp } from './src/pages/SignUp';
+import { Navigation } from './src/pages/Navigation';
 
 export const App = () => (
   <SafeAreaProvider>
     <ReactNativeElementsThemeProvider>
       <StyledComponentsThemeProvider theme={themeColors}>
-        <SignUp />
+        <Navigation />
         <StatusBar style="auto" />
       </StyledComponentsThemeProvider>
     </ReactNativeElementsThemeProvider>
