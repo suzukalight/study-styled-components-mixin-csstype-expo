@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { GestureResponderEvent } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
 import { useForm, Control } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -8,6 +9,9 @@ import { Box } from '../../atoms/Box';
 import { VStack } from '../../atoms/VStack';
 import { Button } from '../../atoms/Button';
 import { RhfTextInput } from '../../forms/TextInput/Rhf';
+
+import { useAppDispatch } from '../../../logics/store/store';
+import { signedIn } from '../../../logics/reducers/auth/slice';
 
 type FormData = {
   username: string;
@@ -73,7 +77,14 @@ export const SignInForm = () => {
     mode: 'onChange', // FIXME: パフォーマンス的に良くないとのこと
   });
 
-  const onSubmit = useCallback((data: FormData) => console.log(data), []);
+  const dispatch = useAppDispatch();
+  const navigation = useNavigation();
+
+  const onSubmit = useCallback((data: FormData) => {
+    // TODO サインイン処理
+    dispatch(signedIn({ id: '42' }));
+    navigation.navigate('Main', { screen: 'Home' });
+  }, []);
 
   const onPressSubmit = handleSubmit(onSubmit);
   const disableSubmit = isDirty && !isValid;
