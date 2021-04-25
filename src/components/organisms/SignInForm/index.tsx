@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/core';
 import { useForm, Control } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { unwrapResult } from '@reduxjs/toolkit';
 
 import { Box } from '../../atoms/Box';
 import { VStack } from '../../atoms/VStack';
@@ -11,7 +12,7 @@ import { Button } from '../../atoms/Button';
 import { RhfTextInput } from '../../forms/TextInput/Rhf';
 
 import { useAppDispatch } from '../../../logics/store/store';
-import { signedIn } from '../../../logics/reducers/auth/slice';
+import { signIn } from '../../../logics/reducers/auth/actions/signIn';
 
 type FormData = {
   username: string;
@@ -80,10 +81,15 @@ export const SignInForm = () => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation();
 
-  const onSubmit = useCallback((data: FormData) => {
-    // TODO サインイン処理
-    dispatch(signedIn({ id: '42' }));
-    navigation.navigate('Main', { screen: 'Home' });
+  const onSubmit = useCallback(async (data: FormData) => {
+    dispatch(signIn({ email: data.username, password: data.password }))
+      .then(unwrapResult)
+      .then((res) => {
+        navigation.navigate('Main', { screen: 'Home' });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }, []);
 
   const onPressSubmit = handleSubmit(onSubmit);
