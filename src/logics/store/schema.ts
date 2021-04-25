@@ -4,4 +4,5 @@ export type User = {
 
 export type AuthState = {
   actor: User | null;
+  signingIn: boolean;
 };

@@ -1,21 +1,24 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-import { AuthState, User } from '../../store/schema';
+import { AuthState } from '../../store/schema';
+import { signIn, signInPending, signInFulfilled, signInRejected } from './actions/signIn';
 
 const initialState: AuthState = {
   actor: null,
+  signingIn: false,
 };
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-    signedIn: (state, action: PayloadAction<User | null>) => {
-      state.actor = action.payload;
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(signIn.pending, signInPending);
+    builder.addCase(signIn.fulfilled, signInFulfilled);
+    builder.addCase(signIn.rejected, signInRejected);
   },
 });
 
-export const { signedIn } = authSlice.actions;
+// export const { signedIn } = authSlice.actions;
 
 export default authSlice.reducer;
