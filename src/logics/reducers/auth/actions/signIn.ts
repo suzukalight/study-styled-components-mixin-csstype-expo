@@ -11,18 +11,18 @@ export type SignInInputData = {
 
 export const signIn = createAsyncThunk<User, SignInInputData>(
   'auth/signIn',
-  async ({ email, password }, thunkApi) => {
+  async ({ email, password }, { rejectWithValue }) => {
     // FIXME API呼び出しに変える
     await sleep(1000);
 
-    if (email.indexOf('@email.com') < 0) {
-      return thunkApi.rejectWithValue({ errorMessage: 'Fetch error' });
+    if (email.indexOf('@email.com') < 0 || !password) {
+      return rejectWithValue({ errorMessage: 'Fetch error' });
     }
     return { id: '42' };
   },
 );
 
-export const signInPending = (state: AuthState, action: PendingAction<SignInInputData>) => {
+export const signInPending = (state: AuthState, _action: PendingAction<SignInInputData>) => {
   state.signingIn = true;
 };
 
@@ -31,12 +31,12 @@ export const signInFulfilled = (
   action: FulfilledAction<SignInInputData, User>,
 ) => {
   state.signingIn = false;
-  state.actor = { id: '32' };
+  state.actor = action.payload;
 };
 
 export const signInRejected = (
   state: AuthState,
-  action: RejectedWithValueAction<SignInInputData, { message: string }>,
+  _action: RejectedWithValueAction<SignInInputData, { message: string }>,
 ) => {
   state.signingIn = false;
   state.actor = null;
