@@ -13,7 +13,7 @@ export const signIn = createAsyncThunk<User, SignInInputData>(
   'auth/signIn',
   async ({ email, password }, { rejectWithValue }) => {
     // FIXME API呼び出しに変える
-    await sleep(1000);
+    await sleep(500);
 
     if (email.indexOf('@email.com') < 0 || !password) {
       return rejectWithValue({ errorMessage: 'Fetch error' });
